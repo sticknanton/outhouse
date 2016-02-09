@@ -1,0 +1,19 @@
+var api = angular.module('outhousesApi', [])
+
+api.factory('outhousesApi', ['$http', function ($http) {
+  var baseUrl = '/api/outhouses';
+  var outhousesApi = {}
+
+  outhousesApi.addressLatLng = function (outhouse) {
+    var googleUrl= 'https://maps.googleapis.com/maps/api/geocode/json?address='+outhouse.address+',+'+outhouse.city+',+'+outhouse.state+'&key=AIzaSyDrW9vJiZVTZ1V8P-FdnutfMIx6DWKVV7g'
+    return $http.get(googleUrl)
+  }
+  outhousesApi.createNew = function (outhouse) {
+
+    return $http.post(baseUrl, {outhouse: outhouse})
+  }
+  outhousesApi.getAll = function () {
+      return $http.get(baseUrl)
+  }
+  return outhousesApi;
+}])

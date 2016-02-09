@@ -7,14 +7,14 @@ var app = express();
 app.use(express.static('./public'));
 app.use( bodyParser.urlencoded({extended: true}) );
 app.use( bodyParser.json() );
-var mongoPath = 'mongodb://localhost/outhouse-app-01';
+var mongoPath = 'mongodb://localhost/outhouse-app-03';
 mongoose.connect(process.env.MONGOLAB_URI||mongoPath);
 
 
 
 var users = require('./routers/users');
 app.use('/api/users', users);
-var posts = require('./routers/outhouses');
+var outhouses = require('./routers/outhouses');
 app.use('/api/outhouses', outhouses);
 
 app.get('/', function(req, res){

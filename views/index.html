@@ -2,12 +2,54 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js" charset="utf-8"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrW9vJiZVTZ1V8P-FdnutfMIx6DWKVV7g"></script>
+    <script src="/js/services/tokenServices.js" charset="utf-8"></script>
+    <script src="/js/services/usersApiServices.js" charset="utf-8"></script>
+    <script src="/js/services/outhousesApiServices.js" charset="utf-8"></script>
+    <script src="/js/controllers/mapController.js" charset="utf-8"></script>
+    <script src="/js/controllers/mainController.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
     <title>Outhouse</title>
   </head>
-  <body>
-    <section id="userHandler">
+  <body ng-app="OuthouseApp">
 
+    <section id="appContainer" ng-controller="mainController">
+      <h3 class="prompt" ng-show="logged">Logged in as {{currentUser}}</h3>
+      <button type="button" ng-show="logged" ng-click=logOut()>Log Out</button>
+        <div class="join" ng-hide='logged'>
+        <h3 class="prompt">Join Us</h3>
+        <form ng-submit="createUser(user)" >
+          <input type="text" ng-model="user.username" placeholder=" new username">
+          <input type="text" ng-model="user.password" placeholder=" new user password">
+          <input class="logger" type="submit">
+        </form>
+      </div>
+      <div class="logIn" ng-hide='logged'>
+        <h3 class="prompt">Log In</h3>
+        <form ng-submit="logIn(username, password)">
+          <input type="text" ng-model="username" placeholder="username">
+          <input type="text" ng-model="password" placeholder="password">
+          <input class="logger" type="submit">
+        </form>
+      </div>
     </section>
 
+
+
+    <section ng-controller="mapController">
+      <form id="newOuthouseForm"  ng-submit="createNew(outhouse)" ng-show="logged" >
+        <input type="text" ng-model="outhouse.address" placeholder="address">
+        <input type="text" ng-model="outhouse.city" placeholder="city">
+        <input type="text" ng-model="outhouse.state" placeholder="state">
+        <input type="text" ng-model="outhouse.title" placeholder="title">
+        <input class="logger" type="submit">
+      </form>
+      <div id="map">
+
+      </div>
+    </section>
   </body>
 </html>
