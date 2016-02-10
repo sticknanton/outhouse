@@ -24,6 +24,8 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
   $scope.setUser = function(response){
     $rootScope.currentUser = response.config.data.username;
     $rootScope.logged = true;
+    $scope.loggingIn = false;
+    $scope.signingUp = false;
     $scope.username='';
     $scope.password='';
     console.log($rootScope.logged);
@@ -45,9 +47,25 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
       $rootScope.currentUser=$cookies.get('user');
     }
   }
+  $scope.toggleLogIn = function () {
+    if($scope.loggingIn){
+      $scope.loggingIn=false;
+    }else {
+      $scope.loggingIn=true;
+    }
+  }
+  $scope.toggleSignUp = function () {
+    if($scope.signingUp){
+      $scope.signingUp=false;
+    }else {
+      $scope.signingUp=true;
+    }
+  }
   var init = function () {
    $scope.checkToken();
    $scope.searchOnly=false;
+   $scope.signingUp=false;
+   $scope.loggingIn = false;
   };
   init();
 

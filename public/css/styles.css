@@ -1,7 +1,35 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#log-holder{
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(88,88,88,0.3);
+  display: inline-block;;
+  width: 350px;
+  text-align: center;
+}
+#log-holder button{
+float: left;
+margin: 8px;
+margin-left: 8%;
+padding: 0;
+width: 130px;
+border-radius: 25px;
+}
+#log-holder button h3{
+font-size: 30px;
+}
+#map-holder{
+  position: absolute;
+  width: 100%;
+}
 #map{
   height: 500px;
 }
-#newFormCaller{
+.newFormCaller{
   z-index: 2;
 width: 100%;
 }

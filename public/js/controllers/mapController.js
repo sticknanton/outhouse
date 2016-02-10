@@ -19,7 +19,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
   }
 
   $scope.infoContent = function(outhouse){
-    return '<div><h1>' + outhouse.title + '</h1><br><h3>' + outhouse.rating + '</h3><br><a href="#"><p>' + outhouse.description + '</p></a></div>'
+    return '<div><h3>' + outhouse.title + '</h3><h4>' + outhouse.rating + ' out of 5 stars </h4><br><h6>' + outhouse.description + '</h6></div>'
   }
 
   $scope.markerWindows = function (marker, outhouse) {
@@ -60,6 +60,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
       controlUI.style.marginRight = '2px';
       controlUI.title = 'Click to open the form';
       controlUI.style.textAlign = 'right';
+      controlUI.className="newFormCaller"
       controlUI.innerHTML = '<i ng-show="logged" class="fa fa-plus-circle"></i>';
       controlUI.style.fontSize = '35px';
       controlDiv.appendChild(controlUI);
@@ -104,16 +105,11 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
         $scope.getOuthouses();
         var newOuthouseDiv = document.createElement('div');
+        newOuthouseDiv.className="newFormCaller";
         var centerControl = new CenterControl(newOuthouseDiv, mapScope.map);
         console.log(centerControl);
         newOuthouseDiv.index = 1;
         mapScope.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(newOuthouseDiv);
-
-        // var centerControlDiv = document.createElement('div');
-        // var centerControl = new CenterControl(centerControlDiv, map);
-        //
-        // centerControlDiv.index = 1;
-        // map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
       }
       $rootScope.openForm=false;
     }
