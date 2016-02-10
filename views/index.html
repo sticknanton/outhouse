@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js" charset="utf-8"></script>
@@ -40,16 +41,10 @@
 
 
     <section ng-controller="mapController">
-      <form id="newOuthouseForm"  ng-submit="createNew(outhouse)" ng-show="logged" >
-        <input type="text" ng-model="outhouse.address" placeholder="address">
-        <input type="text" ng-model="outhouse.city" placeholder="city">
-        <input type="text" ng-model="outhouse.state" placeholder="state">
-        <input type="text" ng-model="outhouse.title" placeholder="title">
-        <input class="logger" type="submit">
-      </form>
       <div id="map">
 
       </div>
+
     </section>
   </body>
 </html>

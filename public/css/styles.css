@@ -1,3 +1,9 @@
 #map{
   height: 500px;
+
+  z-index: 1;
+}
+#newFormCaller{
+  z-index: 2;
+width: 100%;
 }
