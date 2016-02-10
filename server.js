@@ -7,7 +7,7 @@ var app = express();
 app.use(express.static('./public'));
 app.use( bodyParser.urlencoded({extended: true}) );
 app.use( bodyParser.json() );
-var mongoPath = 'mongodb://localhost/outhouse-app-03';
+var mongoPath = 'mongodb://localhost/outhouse-app-04';
 mongoose.connect(process.env.MONGOLAB_URI||mongoPath);
 
 

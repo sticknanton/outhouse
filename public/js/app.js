@@ -1,3 +1,3 @@
 var app = angular.module('OuthouseApp',
 ['ngCookies',
-'mainControllers','usersApi','mapControllers','outhousesApi','tokenServices'])
+'mainControllers','usersApi','mapControllers','outhousesApi','tokenServices','ui.bootstrap'])

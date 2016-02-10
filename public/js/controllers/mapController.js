@@ -16,7 +16,6 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
           $scope.addMarker(response.data);
         })
     })
-
   }
 
   $scope.infoContent = function(outhouse){
@@ -34,7 +33,6 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
   $scope.addMarker = function (outhouse) {
     var image = '/images/outhouse.png';
-
     var marker = new google.maps.Marker({
         map: myMap.map,
         position: new google.maps.LatLng(outhouse.position.lat, outhouse.position.lng),
@@ -47,7 +45,6 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
   $scope.getOuthouses = function () {
     outhousesApi.getAll().then(function (response) {
       $scope.outhouses = response.data.outhouses;
-
       $scope.outhouses.forEach(function (outhouse) {
         $scope.addMarker(outhouse);
       })
@@ -56,7 +53,6 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
 
   CenterControl = function(controlDiv, myMap) {
-
     var controlUI = document.createElement('div');
       controlUI.title = 'Test the stuff';
       controlUI.style.backgroundColor = 'transparent';
@@ -69,11 +65,10 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
       controlDiv.appendChild(controlUI);
 
     var controlText = document.createElement('div');
-      controlText.innerHTML = '<form class="newOuthouseForm" ng-submit="createNew(outhouse)" ng-show="openForm"><input type="text" ng-model="outhouse.address" placeholder="address"><input type="text" ng-model="outhouse.city" placeholder="city"><input type="text" ng-model="outhouse.state" placeholder="state"><input type="text" ng-model="outhouse.title" placeholder="title"><input type="text" ng-model="outhouse.description" placeholder="title"><input class="logger" type="submit"></form>'
-      $compile( controlText )($scope);
-
-      controlUI.appendChild(controlText);
-      $compile( controlUI )($rootScope);
+      controlText.innerHTML = '<div id="outhouseFormHolder" ng-show="openForm"><h2>Add Another Outhouse!</h2><form class="newOuthouseForm" ng-submit="createNew(outhouse)"><input type="text" ng-model="outhouse.address" placeholder="address"><input type="text" ng-model="outhouse.city" placeholder="city"><input type="text" ng-model="outhouse.state" placeholder="state"><input type="text" ng-model="outhouse.title" placeholder="title"><br><div class="stars"><input class="star star-5" id="star-5" type="radio" ng-model="outhouse.rating" name="star" value="5"/><label class="star star-5" for="star-5"></label><input class="star star-4" id="star-4" type="radio" ng-model="outhouse.rating" name="star" value="4"/><label class="star star-4" for="star-4"></label><input class="star star-3" id="star-3" type="radio" ng-model="outhouse.rating" name="star" value="3"/><label class="star star-3" for="star-3"></label><input class="star star-2" id="star-2" type="radio" ng-model="outhouse.rating" name="star" value="2"/><label class="star star-2" for="star-2"></label><input class="star star-1" id="star-1" type="radio" ng-model="outhouse.rating" name="star" value="1"/><label class="star star-1" for="star-1"></label></div><br><textarea ng-model="outhouse.description" rows="2" cols="40"></textarea><br><input class="logger" type="submit"></form><br></div>'
+    $compile( controlText )($scope);
+    controlUI.appendChild(controlText);
+    $compile( controlUI )($rootScope);
 
     controlUI.firstChild.addEventListener('click', function() {
       console.log('clicked');
@@ -84,10 +79,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
         $rootScope.openForm=true;
         $compile( controlText )($rootScope);
       }
-
-
     });
-
 }
   var myMap = {};
   myMap.init = function() {
@@ -98,23 +90,18 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
       this.zoom=16;
       this.mapEl = document.querySelector('#map')
       navigator.geolocation.getCurrentPosition(function(pos) {
-        scope.initialize(pos.coords)
+        mapScope.initialize(pos.coords)
       })
 
       this.initialize = function (pos) {
         mapScope.currentLatLng = new google.maps.LatLng(pos.latitude, pos.longitude);
-        mapScope.currentLatLng = new google.maps.LatLng(pos.latitude, pos.longitude);
-        mapScope.map = new google.maps.Map(mapScope.mapEl, {
-        mapScope.map = new google.maps.Map(mapScope.mapEl, {
         mapScope.map = new google.maps.Map(mapScope.mapEl, {
           center: mapScope.currentLatLng,
-          center: mapScope.currentLatLng,
           zoom: mapScope.zoom,
-          zoom: mapScope.zoom,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
         });
 
-        $scope.getOuthouses();
         $scope.getOuthouses();
         var newOuthouseDiv = document.createElement('div');
         var centerControl = new CenterControl(newOuthouseDiv, mapScope.map);

@@ -1,9 +1,46 @@
 #map{
   height: 500px;
-
-  z-index: 1;
 }
 #newFormCaller{
   z-index: 2;
 width: 100%;
 }
+#outhouseFormHolder{
+  background-color: rgba(88,88,88,0.5);
+  float: right;
+  text-align: center;
+}
+form.newOuthouseForm{
+  font-size: 20px;
+}
+form.newOuthouseForm input{
+  margin: 2px;
+}
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+input.star-1:checked ~ label.star:before { color: #F62; }
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+label.star:hover { transform: scale(1.3); }
