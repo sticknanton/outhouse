@@ -57,7 +57,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
       controlUI.title = 'Test the stuff';
       controlUI.style.backgroundColor = 'transparent';
       controlUI.style.cursor = 'pointer';
-      controlUI.style.marginRight = '2px';
+      controlUI.style.marginRight = '25px';
       controlUI.title = 'Click to open the form';
       controlUI.style.textAlign = 'right';
       controlUI.className="newFormCaller"
@@ -66,7 +66,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
       controlDiv.appendChild(controlUI);
 
     var controlText = document.createElement('div');
-      controlText.innerHTML = '<div id="outhouseFormHolder" ng-show="openForm"><h2>Add Another Outhouse!</h2><form class="newOuthouseForm" ng-submit="createNew(outhouse)"><input type="text" ng-model="outhouse.address" placeholder="address"><input type="text" ng-model="outhouse.city" placeholder="city"><input type="text" ng-model="outhouse.state" placeholder="state"><input type="text" ng-model="outhouse.title" placeholder="title"><br><div class="stars"><input class="star star-5" id="star-5" type="radio" ng-model="outhouse.rating" name="star" value="5"/><label class="star star-5" for="star-5"></label><input class="star star-4" id="star-4" type="radio" ng-model="outhouse.rating" name="star" value="4"/><label class="star star-4" for="star-4"></label><input class="star star-3" id="star-3" type="radio" ng-model="outhouse.rating" name="star" value="3"/><label class="star star-3" for="star-3"></label><input class="star star-2" id="star-2" type="radio" ng-model="outhouse.rating" name="star" value="2"/><label class="star star-2" for="star-2"></label><input class="star star-1" id="star-1" type="radio" ng-model="outhouse.rating" name="star" value="1"/><label class="star star-1" for="star-1"></label></div><br><textarea ng-model="outhouse.description" rows="2" cols="40"></textarea><br><input class="logger" type="submit"></form><br></div>'
+      controlText.innerHTML = '<div id="outhouseFormHolder" ng-show="openForm"><h2>Add Another Outhouse!</h2><form class="newOuthouseForm" ng-submit="createNew(outhouse)"><input type="text" ng-model="outhouse.address" placeholder="address"><input type="text" ng-model="outhouse.city" placeholder="city"><input type="text" ng-model="outhouse.state" placeholder="state"><input type="text" ng-model="outhouse.title" placeholder="name the place"><br><div class="stars"><strong>Rate based on cleanliness and accessibility</strong><br><input class="star star-5" id="star-5" type="radio" ng-model="outhouse.rating" name="star" value="5"/><label class="star star-5" for="star-5"></label><input class="star star-4" id="star-4" type="radio" ng-model="outhouse.rating" name="star" value="4"/><label class="star star-4" for="star-4"></label><input class="star star-3" id="star-3" type="radio" ng-model="outhouse.rating" name="star" value="3"/><label class="star star-3" for="star-3"></label><input class="star star-2" id="star-2" type="radio" ng-model="outhouse.rating" name="star" value="2"/><label class="star star-2" for="star-2"></label><input class="star star-1" id="star-1" type="radio" ng-model="outhouse.rating" name="star" value="1"/><label class="star star-1" for="star-1"></label></div><br><textarea ng-model="outhouse.description" rows="2" cols="40"></textarea><br><input class="logger" type="submit"></form><br></div>'
     $compile( controlText )($scope);
     controlUI.appendChild(controlText);
     $compile( controlUI )($rootScope);

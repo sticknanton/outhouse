@@ -22,22 +22,22 @@
   </head>
   <body ng-app="OuthouseApp">
     <section id="log-holder" ng-controller="mainController">
-      <h3 class="prompt" ng-show="logged">{{currentUser}}
-      <button class="user-button"type="button" ng-show="logged" ng-click=logOut()>Log Out</button></h3>
-      <button class="user-button" type="button" ng-hide="logged" ng-click=toggleLogIn()><h3 class="prompt">Log In</h3></button>
-        <div class="join" ng-hide='logged'>
-        <button type="button" ng-click=toggleSignUp()><h3 class="prompt">Sign Up</h3></button>
+      <h3 class="prompt" ng-show="logged">Welcome back, {{currentUser}}</h3>
+      <button class="btn-danger"type="button" ng-show="logged" ng-click=logOut()>Log Out</button>
+      <button class="btn-danger" type="button" ng-hide="logged" ng-click=toggleLogIn()>Log In</button>
+      <div class="join" ng-hide='logged'>
+        <button class="btn-danger" type="button" ng-click=toggleSignUp()>Sign Up</button>
         <form ng-submit="createUser(user)" ng-show="signingUp">
           <input type="text" ng-model="user.username" placeholder=" new username">
           <input type="text" ng-model="user.password" placeholder=" new user password">
-          <input class="logger" type="submit">
+          <input class="logger btn-danger" type="submit">
         </form>
       </div>
       <div class="logIn" ng-hide='logged'>
         <form ng-submit="logIn(username, password)" ng-show="loggingIn">
           <input type="text" ng-model="username" placeholder="username">
           <input type="text" ng-model="password" placeholder="password">
-          <input class="logger" type="submit">
+          <input  class="logger btn-danger" type="submit">
         </form>
       </div>
     </section>
@@ -46,5 +46,6 @@
 
       </div>
     </section>
+    <footer><img src="images/favicon.ico" alt="" />Outhouse a Stanton Coding Project</footer>
   </body>
 </html>

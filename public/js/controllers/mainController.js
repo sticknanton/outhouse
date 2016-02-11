@@ -53,6 +53,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
     }else {
       $scope.loggingIn=true;
     }
+    $scope.signingUp=false;
   }
   $scope.toggleSignUp = function () {
     if($scope.signingUp){
@@ -60,6 +61,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
     }else {
       $scope.signingUp=true;
     }
+    $scope.loggingIn=false;
   }
   var init = function () {
    $scope.checkToken();
