@@ -17,6 +17,7 @@ router.post('/authenticate', function (req, res) {
   var passwordTry = req.body.password;
 
   User.findOne({username: usernameTry}, function (err, dbUser) {
+    if(dbUser){
     dbUser.authenticate(passwordTry, function (err, isMatch) {
       if (isMatch) {
         dbUser.setToken(function () {
@@ -26,6 +27,9 @@ router.post('/authenticate', function (req, res) {
           res.json({description: 'your password is not correct'});
       }
     });
+    }else {
+        res.json({description: 'your username is not real, you don\'t exist'});
+    }
   });
 });
 

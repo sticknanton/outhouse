@@ -12,6 +12,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
   }
 
   $scope.logIn = function(username, password) {
+    $rootScope.currentUser = '';
     usersApi.auth(username, password).then(function(response) {
       if(response.data.token){
         $scope.cookieStuff(response)

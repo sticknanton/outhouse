@@ -12,6 +12,9 @@ api.factory('outhousesApi', ['$http', function ($http) {
 
     return $http.post(baseUrl, {outhouse: outhouse})
   }
+  outhousesApi.updateOuthouse= function (outhouse) {
+    return $http.patch(baseUrl+'/'+outhouse._id, { outhouse, outhouse} )
+  }
   outhousesApi.getAll = function () {
       return $http.get(baseUrl)
   }
