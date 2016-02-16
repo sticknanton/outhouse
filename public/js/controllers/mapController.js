@@ -31,23 +31,23 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
     var averageRating = (total/i).toFixed(2);
     return averageRating;
   }
+
   $scope.checkRating = function (outhouse) {
     var rated = false;
     outhouse.ratings.forEach( function (rating) {
       if(rating.username == $rootScope.currentUser){
         rated = true;
         $scope.userRating = rating.value;
-        console.log($scope.userRating);
         return rated;
       }
     })
     return rated;
   }
+
   $scope.addRating = function(outhouse, rating){
     var value = parseInt(rating) || 3;
     outhouse.ratings.push({username: $rootScope.currentUser, value: value});
     outhousesApi.updateOuthouse(outhouse).then( function(response) {
-     console.log(response);
      $scope.userRating = value;
      $scope.selectedOuthouse.average = $scope.average($scope.selectedOuthouse)
      $scope.rated = true;
