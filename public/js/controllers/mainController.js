@@ -17,6 +17,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
       if(response.data.token){
         $scope.cookieStuff(response)
         $scope.setUser(response)
+        $rootScope.initMap();
       }else {
           $scope.username=''; $scope.password='';
       }
