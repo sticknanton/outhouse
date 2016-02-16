@@ -19,6 +19,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
           $rootScope.outhouse = {};
           $rootScope.rating=0;
           $rootScope.showForm = false;
+          myMap.recenter(response.config.data.outhouse.position);
           $scope.addMarker(response.config.data.outhouse);
         })
     })
@@ -116,7 +117,44 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
     })
   }
 
+  $scope.getBackToMe = function () {
+    $scope.loading = true;
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var newCenter = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      myMap.recenter(newCenter);
+      $scope.$apply(function() {
+        $scope.loading = false;
+      });
+    });
+  }
+
+  $scope.findAnewCenter = function (location){
+    $scope.loading = true;
+    outhousesApi.newLoc(location).then(function (response) {
+      console.log(response);
+      myMap.recenter(response.data.results[0].geometry.location);
+      $scope.adjustCenter = !$scope.adjustCenter;
+      $scope.location='';
+    });
+  }
+
+  $scope.logOut = function () {
+    $scope.toggleMenu();
+    $rootScope.logOut();
+  }
+
+  $scope.toggleLocForm = function () {
+    $scope.toggleMenu();
+    $scope.adjustCenter = !$scope.adjustCenter;
+  }
+
+  $scope.toggleMenu = function () {
+    $scope.showMenu = !$scope.showMenu;
+    $rootScope.showForm = false;
+  }
+
   $scope.toggleForm = function () {
+    $scope.toggleMenu();
     $rootScope.showForm = !$rootScope.showForm;
     $scope.outhouse = {};
     var formDiv = document.getElementById('outhouseFormHolder');
@@ -129,11 +167,18 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
   $rootScope.initMap = function () {
     myMap.init();
   }
-
+  myMap.recenter = function(position){
+    myMap.map.setCenter(position);
+    console.log('center set');
+    $scope.loading = false;
+    console.log($scope.loading);
+  }
   myMap.init = function() {
       var mapScope = this;
       prev_infowindow = false;
+      $scope.loading = true;
       $scope.rated = false;
+      $scope.adjustCenter = false;
       $rootScope.currentUser = false;
       $rootScope.currentUser = $cookies.get('user');
       $rootScope.showForm = false;
@@ -152,6 +197,8 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true
         });
+
+        $scope.loading = false;
         $scope.getOuthouses();
       }
     }

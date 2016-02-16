@@ -36,7 +36,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
     $cookies.put('user', response.config.data.username);
     $cookies.put('token', response.data.token);
   }
-  $scope.logOut = function () {
+  $rootScope.logOut = function () {
     $cookies.remove('user');
     $cookies.remove('token');
     $rootScope.logged = false;
@@ -49,6 +49,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
       $rootScope.currentUser=$cookies.get('user');
     }
   }
+
   $scope.toggleLogIn = function () {
     if($scope.loggingIn){
       $scope.loggingIn=false;
@@ -70,6 +71,7 @@ ctlr.controller('mainController', ['$scope','$http','$cookies','usersApi','token
    $scope.searchOnly=false;
    $scope.signingUp=false;
    $scope.loggingIn = false;
+   $scope.showMenu = false;
   };
   init();
 

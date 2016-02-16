@@ -20,16 +20,64 @@ h3{
   text-align: left;
   width: 100%;
   height: 55px;
+  border-bottom: 1px solid black;
 }
-#form-toggler{
-  right: 0;
+#three-bars{
+  right: 5px;
   position: absolute;
   z-index: 17;
   color: firebrick;
   margin: 10px;
   font-size: 38px;
 }
+#compass{
+  position: absolute;
+  z-index: 17;
+  color: firebrick;
+  margin: 5px;
+  right: 0;
+  font-size: 28px;
+  bottom: 27px;
+}
+#three-bars:hover, #compass:hover{
+  cursor: pointer;
+}
 
+#loading{
+  position: absolute;
+  z-index: 17;
+  font-size: 55px;
+  color: firebrick;
+  margin: 45%;
+}
+
+#menu{
+  top: 55px;
+  position: absolute;
+  z-index: 17;
+  color: firebrick;
+  font-size: 28px;
+  list-style-type: none;
+  right: 0;
+  width: 225px;
+  text-align: center;
+}
+#menu li{
+  border: 1px solid black;
+  border-bottom: none;
+  background-color: rgba(88,88,88,0.7);
+}
+#menu li:first-child{
+  border-top: none;
+}
+#menu li:last-child{
+  border-bottom: 1px solid black;
+
+}
+#menu li:hover{
+  background-color: rgba(88,88,88,0.9);
+  cursor: pointer;
+}
 #log-holder button, #outhouseFormHolder button{
   color: white;
   margin: 8px;
@@ -84,14 +132,24 @@ width: 100%;
   width: 80%;
   display: block;
   margin-left: 10%;
-  margin-top: 57px;
+  margin-top: 70px;
+  z-index: 170000000;
+  position: absolute;
+}
+#changeLocationForm{
+  background-color: rgba(88,88,88,0.7);
+  text-align: center;
+  width: 80%;
+  display: block;
+  margin-left: 10%;
+  margin-top: 70px;
   z-index: 170000000;
   position: absolute;
 }
 #outhouseFormHolder textarea{
   width: 80%;
 }
-#outhouseFormHolder h2{
+#outhouseFormHolder h2, #changeLocationForm h2{
   color: white;
 }
 form.newOuthouseForm{

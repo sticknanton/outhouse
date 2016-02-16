@@ -24,7 +24,6 @@
   <body ng-app="OuthouseApp">
     <section id="log-holder" ng-controller="mainController">
       <h3 class="prompt" ng-show="logged">{{currentUser}}</h3>
-      <button class="btn-danger"type="button" ng-show="logged" ng-click=logOut()>Log Out</button>
       <button class="btn-danger" type="button" ng-hide="logged" ng-click=toggleLogIn()>Log In</button>
       <button class="btn-danger" type="button" ng-hide="logged" ng-click=toggleSignUp()>Sign Up</button>
       <div class="join" ng-hide='logged'>
@@ -44,7 +43,13 @@
     </section>
 
     <section id="map-holder" ng-controller="mapController">
-      <i id="form-toggler" ng-show="logged" class="fa fa-plus-circle"></i>
+      <i id="three-bars" class="fa fa-bars" ng-show="logged" ng-click="toggleMenu()"></i>
+        <ul id="menu" ng-show="showMenu">
+          <li ng-click="logOut()">Logout</li>
+          <li id="form-toggler">Add Outhouse</li>
+          <li ng-click="toggleLocForm()">Change Location</li>
+        </ul>
+      <!-- <i id="form-toggler" ng-show="logged" class="fa fa-plus-circle"></i> -->
       <div id="outhouseFormHolder" ng-show="showForm">
         <h2>Add Another Outhouse!</h2>
         <form class="newOuthouseForm" ng-show="showForm" ng-submit="createNew(outhouse, rating)">
@@ -67,6 +72,20 @@
             <button class="btn-danger" type="submit" name="name" >Submit</button>
           </form><br>
         </div>
+        <div id="changeLocationForm" ng-show="adjustCenter">
+          <h2>Where do you want to go?!</h2>
+          <form ng-submit="findAnewCenter(location)">
+            <label for="">The more info you give the more likely this is to be accurate.</label>
+            <input type="text" ng-model="location" placeholder="Address, city, state, territory, region, zip code">
+            <input type="submit">
+          </form>
+        </div>
+        <div id='loading'>
+            <i class="fa fa-spinner fa-pulse" ng-show="loading"></i>
+        </div>
+
+
+      <i id='compass' class="fa fa-compass" ng-click=getBackToMe()></i>
       <div id="map">
 
       </div>
