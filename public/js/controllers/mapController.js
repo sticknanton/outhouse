@@ -78,10 +78,9 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
   $scope.markerWindows = function (marker, outhouse) {
     $scope.rated = $scope.checkRating(outhouse);
-
-
     google.maps.event.addListener(marker, 'click', function() {
       $scope.selectedOuthouse = outhouse;
+      $scope.rating=0;
       $scope.selectedOuthouse.average = $scope.average($scope.selectedOuthouse)
       $scope.rated = $scope.checkRating($scope.selectedOuthouse);
       if( prev_infowindow ) {
