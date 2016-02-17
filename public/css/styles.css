@@ -221,10 +221,6 @@ div.stars2{
 
 div.stars2 label.star{
   font-size: 28px;
-  padding: 5px;
-
-}
-div.stars2 label.star-5{
-  margin-right: 8px;
-
+  padding: 1px;
+  margin-right: 10px;
 }
