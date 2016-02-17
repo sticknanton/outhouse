@@ -48,7 +48,8 @@ h3{
   z-index: 17;
   font-size: 55px;
   color: firebrick;
-  margin: 45%;
+  margin-left: 45%;
+  margin-top: 25%;
 }
 
 #menu{
@@ -173,7 +174,7 @@ div.stars {
 input.star { display: none; }
 label.star {
   float: right;
-  padding: 10px;
+  padding: 8px;
   font-size: 36px;
   color: #444;
   transition: all .2s;
