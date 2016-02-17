@@ -23,21 +23,21 @@
   </head>
   <body ng-app="OuthouseApp">
     <section id="log-holder" ng-controller="mainController">
-      <h3 class="prompt" ng-show="logged">{{currentUser}}</h3>
-      <button class="btn-danger" type="button" ng-hide="logged" ng-click=toggleLogIn()>Log In</button>
-      <button class="btn-danger" type="button" ng-hide="logged" ng-click=toggleSignUp()>Sign Up</button>
+      <h3 class="prompt" ng-show="logged">Welcome {{currentUser}}</h3>
+      <button class="starter btn-danger" type="button" ng-hide="logged" ng-click=toggleLogIn()>Log In</button>
+      <button class="starter btn-danger" type="button" ng-hide="logged" ng-click=toggleSignUp()>Sign Up</button>
       <div class="join" ng-hide='logged'>
         <form ng-submit="createUser(user)" ng-show="signingUp">
           <input type="text" ng-model="user.username" placeholder=" new username">
           <input type="text" ng-model="user.password" placeholder=" new user password">
-          <input class="logger btn-danger" type="submit">
+          <button type="submit" class="logger btn-danger">Submit</button>
         </form>
       </div>
       <div class="logIn" ng-hide='logged'>
         <form ng-submit="logIn(username, password)" ng-show="loggingIn">
           <input type="text" ng-model="username" placeholder="username">
           <input type="text" ng-model="password" placeholder="password">
-          <input class="logger btn-danger" type="submit">
+          <button type="submit" class="logger btn-danger">Submit</button>
         </form>
       </div>
     </section>
@@ -80,6 +80,7 @@
             <input type="submit">
           </form>
         </div>
+
         <div id='loading'>
             <i class="fa fa-spinner fa-pulse" ng-show="loading"></i>
         </div>

@@ -8,13 +8,14 @@ h3{
 }
 .prompt{
   margin-left: 8px;
+  color: white;
 }
 #log-holder * {
   display:inline-block;
   text-align: center;
 }
 #log-holder{
-  position: absolute;
+  position: fixed;
   z-index: 1;
   background-color: rgba(88,88,88,0.7);
   text-align: left;
@@ -24,14 +25,14 @@ h3{
 }
 #three-bars{
   right: 5px;
-  position: absolute;
+  position: fixed;
   z-index: 17;
   color: firebrick;
   margin: 10px;
   font-size: 38px;
 }
 #compass{
-  position: absolute;
+  position: fixed;
   z-index: 17;
   color: firebrick;
   margin: 5px;
@@ -44,19 +45,20 @@ h3{
 }
 
 #loading{
-  position: absolute;
+  position: fixed;
   z-index: 17;
   font-size: 55px;
   color: firebrick;
-  margin-left: 45%;
-  margin-top: 25%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #menu{
   top: 55px;
-  position: absolute;
+  position: fixed;
   z-index: 17;
-  color: firebrick;
+  color: #f3f3f3;
   font-size: 28px;
   list-style-type: none;
   right: 0;
@@ -81,25 +83,30 @@ h3{
 }
 #log-holder button, #outhouseFormHolder button{
   color: white;
-  margin: 8px;
+
   padding: 0;
   width: 130px;
   border-radius: 25px;
+
+}
+#log-holder button.starter, #outhouseFormHolder button{
+  margin: 8px;
   margin-top: 15px;
 }
-
-@media (max-width: 660px) {
+@media (max-width: 750px) {
   #log-holder button{
     width: 60px;
     border-radius: 10px;
   }
 }
 
-
 .join form, .logIn form{
   margin-top: 15px;
   text-align: center;
+  right: 0;
 }
+
+
 #map-holder{
   position: absolute;
   width: 100%;
@@ -114,7 +121,7 @@ footer{
   height: 25px;
   background-color: firebrick;
   position: absolute;
-  bottom: 1px;
+  bottom: 0px;
   padding: 2px;
   color: white;
   text-align: right;
@@ -159,18 +166,22 @@ form.newOuthouseForm{
 form.newOuthouseForm input{
   margin: 2px;
 }
-div.infoContent{
+div#infoContent{
   max-width: 220px;
   text-align: center;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+  margin-left: 20px;
+}
+h4.submitLink:hover{
+  cursor: pointer;
 }
 div.stars {
   width: 270px;
   display: inline-block;
 }
-
+i.fa-star, i.fa-star-half-o{
+    color: #FD4;
+    text-shadow: 0 0 8px black;
+}
 input.star { display: none; }
 label.star {
   float: right;

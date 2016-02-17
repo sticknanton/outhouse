@@ -49,15 +49,29 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
     var value = parseInt(rating) || 3;
     outhouse.ratings.push({username: $rootScope.currentUser, value: value});
     outhousesApi.updateOuthouse(outhouse).then( function(response) {
+      $scope.selectedOuthouse = outhouse;
      $scope.userRating = value;
      $scope.selectedOuthouse.average = $scope.average($scope.selectedOuthouse)
+     $scope.totalRatings = $scope.selectedOuthouse.ratings.length;
      $scope.rated = true;
 
     })
   }
+  $scope.starStringBulder = function (average) {
+    var starString = '';
+    var tempAverage = average;
+    while(tempAverage>=1){
+      starString+='<i class="fa fa-star"></i>'
+      tempAverage-=1;
+    }
+    if(tempAverage>=0.5){
+      starString+='<i class="fa fa-star-half-o"></i>'
+    }
+    return starString;
+  }
   $scope.infoContent = function(outhouse){
-    var infoString = '<div class="infoContent"><h3>' + outhouse.title + '</h3>'+
-    '<form ng-hide="rated||!currentUser" ng-submit="addRating(selectedOuthouse, rating)">'+
+    var infoString = '<div id="infoContent"><h3 class="marker-title">' + outhouse.title + '</h3>'+
+    '<form ng-hide="rated||!currentUser">'+
     '<div class="stars2"><strong>Add your rating</strong><br>'+
     '<input class="star star-5" id="star-5" type="radio" ng-model="rating" name="star" value="5"/>'+
     '<label class="star star-5" for="star-5"></label>'+
@@ -69,20 +83,24 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
     '<label class="star star-2" for="star-2"></label>'+
     '<input class="star star-1" id="star-1" type="radio" ng-model="rating" name="star" value="1"/>'+
     '<label class="star star-1" for="star-1"></label><br>'+
-    '</div><br><input class="btn-danger" type="submit" name="name"></input>'+
-    '</form><br><h4>{{selectedOuthouse.average}} average out of 5 stars </h4>'+
-    '<h4 ng-show="rated">You rated this one {{userRating}} stars.</h4>'+
-    '<br><h6>' + outhouse.description + '</h6></div>'
+    '</div><br><h4 class="submitLink" ng-click="addRating(selectedOuthouse, rating)">Submit</h4>'+
+    '</form><br><h4>'+ $scope.starString + ' : {{totalRatings}} votes</h4>'+
+    '<h4 ng-show="rated">You rated this {{userRating}} stars.</h4>'+
+    '<br><h6><strong>' + outhouse.description + '</strong></h6></div>'
     return infoString;
   }
 
 
   $scope.markerWindows = function (marker, outhouse) {
     $scope.rated = $scope.checkRating(outhouse);
+
     google.maps.event.addListener(marker, 'click', function() {
       $scope.selectedOuthouse = outhouse;
+      setTimeout(function() { myMap.map.panToWithOffset(marker.getPosition(), 0, -100); }, 150);
       $scope.rating=0;
+      $scope.totalRatings = $scope.selectedOuthouse.ratings.length
       $scope.selectedOuthouse.average = $scope.average($scope.selectedOuthouse)
+      $scope.starString = $scope.starStringBulder($scope.selectedOuthouse.average)
       $scope.rated = $scope.checkRating($scope.selectedOuthouse);
       if( prev_infowindow ) {
        prev_infowindow.close();
@@ -150,6 +168,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
   $scope.toggleMenu = function () {
     $scope.showMenu = !$scope.showMenu;
+    $scope.adjustCenter = false;
     $rootScope.showForm = false;
   }
 
@@ -173,6 +192,19 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
     $scope.loading = false;
     console.log($scope.loading);
   }
+  google.maps.Map.prototype.panToWithOffset = function(latlng, offsetX, offsetY) {
+    var map = this;
+    var ov = new google.maps.OverlayView();
+    ov.onAdd = function() {
+        var proj = this.getProjection();
+        var aPoint = proj.fromLatLngToContainerPixel(latlng);
+        aPoint.x = aPoint.x+offsetX;
+        aPoint.y = aPoint.y+offsetY;
+        map.panTo(proj.fromContainerPixelToLatLng(aPoint));
+    };
+    ov.draw = function() {};
+    ov.setMap(this);
+  };
   myMap.init = function() {
       var mapScope = this;
       prev_infowindow = false;
