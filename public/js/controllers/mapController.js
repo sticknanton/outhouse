@@ -96,7 +96,7 @@ ctlr.controller('mapController', ['$scope','outhousesApi','$cookies','tokenServi
 
     google.maps.event.addListener(marker, 'click', function() {
       $scope.selectedOuthouse = outhouse;
-      setTimeout(function() { myMap.map.panToWithOffset(marker.getPosition(), 0, -100); }, 150);
+      setTimeout(function() { myMap.map.panToWithOffset(marker.getPosition(), 0, -100); }, 300);
       $scope.rating=0;
       $scope.totalRatings = $scope.selectedOuthouse.ratings.length
       $scope.selectedOuthouse.average = $scope.average($scope.selectedOuthouse)
