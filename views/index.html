@@ -69,15 +69,15 @@
           <input class="star star-1" id="star-1" type="radio" ng-model="rating" name="star" value="1"/>
           <label class="star star-1" for="star-1"></label>
             </div><br><textarea ng-model="outhouse.description" rows="2"></textarea><br>
-            <button class="btn-danger" type="submit" name="name" >Submit</button>
+            <button class="logger btn-danger" type="submit" name="name" >Submit</button>
           </form><br>
         </div>
         <div id="changeLocationForm" ng-show="adjustCenter">
           <h2>Where do you want to go?!</h2>
           <form ng-submit="findAnewCenter(location)">
-            <label for="">The more info you give the more likely this is to be accurate.</label>
-            <input type="text" ng-model="location" placeholder="Address, city, state, territory, region, zip code">
-            <input type="submit">
+            <label for="">The more info you give the more likely this is to be accurate.</label><br>
+            <input id="find-loc" type="text" ng-model="location" placeholder="Address, city, state, territory, region, zip code... "><br>
+            <button class="logger btn-danger" type="submit" name="name" >Submit</button>
           </form>
         </div>
 
